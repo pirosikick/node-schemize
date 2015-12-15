@@ -1,6 +1,6 @@
 {
-  "name": "hiden-no-tare.npm",
-  "description": "The secret sauce of @pirosikick for creating npm package",
+  "name": "schemize",
+  "description": "Generates JSON schema from JSON",
   "version": "0.0.1",
   "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
   "devDependencies": {
