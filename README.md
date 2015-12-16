@@ -1,6 +1,6 @@
 [![npm version](https://badge.fury.io/js/schemize.svg)](http://badge.fury.io/js/schemize)
-[![david](https://david-dm.org/pirosikick/schemize.svg)](https://david-dm.org/pirosikick/schemize)
-[![Build Status](https://travis-ci.org/pirosikick/schemize.svg)](https://travis-ci.org/pirosikick/schemize)
+[![david](https://david-dm.org/pirosikick/node-schemize.svg)](https://david-dm.org/pirosikick/node-schemize)
+[![Build Status](https://api.travis-ci.org/pirosikick/node-schemize.svg)](https://travis-ci.org/pirosikick/node-schemize)
 
 node-schemize
 =============
