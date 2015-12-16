@@ -7,20 +7,23 @@ node-schemize
 
 Generates JSON Schema from JSON.
 
-## How to use
+## Installation
 
 ```sh
-# Install schemize in global
+$ npm install schemize
+
+# if you want to use CLI, please install as global package.
 $ npm install -g schemize
+```
 
-$ cat sample.json
-{
-  "key": "value"
-}
+## CLI
 
-# Generates JSON Schema from JSON
-$ schemize sample.json
-{"type":"object","properties":[{"type":"string"}]}
+```sh
+$ cat some.json | schemize
+
+$ cat some.json | schemize --yaml
+
+$ schemize -i some.json -o schema.json
 ```
 
 ## Programmatic API
