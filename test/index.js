@@ -1,4 +1,3 @@
-"use strict";
 import test from "ava";
 import schemize from "../lib";
 
@@ -18,7 +17,7 @@ test("schemize(array)", t => {
       { type: "integer" },
       { type: "number" },
       { type: "null" },
-      { type: "array", items: [] },
+      { type: "array", items: [] }
     ]
   };
 

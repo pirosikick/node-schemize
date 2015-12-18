@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Generates JSON Schema from JSON
  *
@@ -12,7 +10,7 @@ function schemize(json) {
       type: "array",
       items: json.map(value => schemize(value))
     };
-  } else if (typeof(json) === "object" && json !== null) {
+  } else if (typeof json === "object" && json !== null) {
     return {
       type: "object",
       properties:
@@ -27,7 +25,7 @@ function schemize(json) {
 }
 
 function detectType(value) {
-  let type = typeof(value);
+  let type = typeof value;
   switch(type) {
     case "string":
     case "boolean":

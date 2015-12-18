@@ -19,11 +19,11 @@ $ npm install -g schemize
 ## CLI
 
 ```sh
+# Input from stdin
 $ cat some.json | schemize
 
-$ cat some.json | schemize --yaml
-
-$ schemize -i some.json -o schema.json
+# Input from file
+$ schemize -i some.json
 ```
 
 ## Programmatic API

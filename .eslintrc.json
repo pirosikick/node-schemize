@@ -24,7 +24,6 @@
     "no-inner-declarations": 2,
     "no-invalid-regexp": 2,
     "no-irregular-whitespace": 2,
-    "no-use-before-define": [2, "nofunc"],
-    "strict": [2, "global"]
+    "no-use-before-define": [2, "nofunc"]
   }
 }
