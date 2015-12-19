@@ -1,14 +1,7 @@
 /*eslint no-console:0*/
 import {readFile} from "fs";
-import options from "commander";
-import packageJson from "../package.json";
+import options from "./options";
 import schemize from "./index";
-
-options
-  .version(packageJson.version)
-  .description(packageJson.description)
-  .usage("[options]")
-  .option("-i, --input <path>", "Input file path");
 
 const error = message => {
   console.error(message);
@@ -17,8 +10,9 @@ const error = message => {
 
 /**
  * @param {String} input - JSON string
+ * @param {Boolean|String} space - 3rd argument of JSON.stringify
  */
-export function run(input) {
+export function run(input, space) {
   let schema;
   try {
     schema = schemize(JSON.parse(input));
@@ -26,26 +20,29 @@ export function run(input) {
     return error("Input must be JSON format.");
   }
 
-  console.log(JSON.stringify(schema));
+  console.log(JSON.stringify(schema, undefined, space));
 }
 
 export function init() {
   options.parse(process.argv);
 
+  const space = options.pretty === true ? 2 : options.pretty;
+
   if (options.input) {
+    // from file
     readFile(options.input, (err, input) => {
       if (err) {
-        return error(`no such file, '${options.input}'`);
+        error(`no such file, '${options.input}'`);
+        return;
       }
-
-      run(input);
+      run(input, space);
     });
-    return;
+  } else {
+    // from stdin
+    let input = "";
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+    process.stdin.on("data", chunk => input += chunk);
+    process.stdin.on("end", () => run(input, space));
   }
-
-  let input = "";
-  process.stdin.resume();
-  process.stdin.setEncoding('utf8');
-  process.stdin.on("data", chunk => input += chunk);
-  process.stdin.on("end", () => run(input));
 }

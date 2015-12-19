@@ -8,22 +8,42 @@ test.beforeEach(t => {
   t.context.process = mock(process);
 });
 
-test("run with valid json", t => {
+test("run(input)", t => {
   const input = JSON.stringify({ key: "value" });
 
-  const {console} = t.context;
-  const expected = JSON.stringify({
-    type: "object",
-    properties: { key: { type: "string"} }
-  });
-  const consoleLog = console.expects("log").withArgs(expected) .once();
+  t.context.console
+    .expects("log")
+    .withArgs('{"type":"object","properties":{"key":{"type":"string"}}}')
+    .once();
 
   run(input);
 
-  t.ok(consoleLog.verify());
+  t.ok(t.context.console.verify());
 });
 
-test("run with invalid input", t => {
+test("run(input, 2)", t => {
+  const input = JSON.stringify({ key: "value" });
+
+  const expected =
+`{
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string"
+    }
+  }
+}`;
+  t.context.console
+    .expects("log")
+    .withArgs(expected)
+    .once();
+
+  run(input, 2);
+
+  t.ok(t.context.console.verify());
+});
+
+test("run(invalidInput)", t => {
   const input = "INVALID INPUT";
 
   const {console, process} = t.context;
